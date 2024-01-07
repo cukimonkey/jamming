@@ -1,47 +1,48 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./style/Playlist.module.css"
 
-function Playlist(){
+function Playlist({songs, onRemove}){
 
-    const samplePaylist = [
-        {
-          id: 1,
-          title: "Song Title 1",
-          artist: "Artist 1",
-          genre: "Genre 1"
-          
-        },
-        
-        {
-          id: 2,
-          title: "Song Title 2",
-          artist: "Artist 2",
-          genre: "Genre 2"
-        },
+const [playlistName, setPlaylistName] = useState('');
+  const [isEditing, setIsEditing] = useState(true);
 
-        {
-            id: 3,
-            title: "Song Title 3",
-            artist: "Artist 3",
-            genre: "Genre 3"
-          },
-       
-      ];
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      setPlaylistName(event.target.value);
+      setIsEditing(false);
+    }
+  };
+
+  const handleNameClick = () => {
+    setIsEditing(true);
+  };
 
     return (
         <div className={styles.playlistContainer}>
-            <label id="playlistLabel" className={styles.playlistLabel}>Create your Playlist</label>
-            <input id="playlistInput" className={styles.playlistInput}/>
-        <div>
+           {isEditing ? (
+        <input
+          id="playlistInput"
+          className={styles.playlistInput}
+          placeholder="Name your Playlist"
+          onKeyDown={handleKeyPress}
+          autoFocus
+        />
+      ) : (
+        <h3 className={styles.playlistName} onClick={handleNameClick}>
+          {playlistName}
+        </h3>
+      )}
+      <div>
             <ul>
-        {samplePaylist.map((song) => (
+        {songs.map((song) => (
             <li key={song.id} className={styles.playlistItem}>
             <div>
                 <div className={styles.playlistTitle}><strong>Title:</strong> {song.title}</div>
                 <div className={styles.playlistArtist}><strong>Artist:</strong> {song.artist}</div>
+                <div className={styles.playlistAlbum}><strong>Album:</strong> {song.album}</div>
                 <div className={styles.playlistGenre}><strong>Genre:</strong> {song.genre}</div>
             </div>
-            <button className={styles.playlistRemoveButton}>-</button>
+            <button className={styles.playlistRemoveButton} onClick={() => onRemove(song.id)}>-</button>
             </li>
             ))}
             </ul>

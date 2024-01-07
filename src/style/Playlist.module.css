@@ -17,6 +17,13 @@
     margin-bottom: 0.5rem;
   }
   
+  .playlistName {
+    /* Similar styling as your other headings */
+    font-size: 40px;
+    color: #e6e6e6;
+    cursor: pointer;
+    /* any additional styling */
+  }
 
   .playlistContainer {
     width: 40%; /* Occupies the left half of the screen */
