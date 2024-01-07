@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import Spotify from "./Spotify";
 import styles from "./style/Playlist.module.css"
 
 function Playlist({songs, onRemove}){
@@ -15,6 +16,16 @@ const [playlistName, setPlaylistName] = useState('');
 
   const handleNameClick = () => {
     setIsEditing(true);
+  };
+
+  const savePlaylist = () => {
+    if (!playlistName.trim()) {
+        alert("Please enter a playlist name.");
+        return;
+      }
+    
+      const trackUris = songs.map(song => song.uri);
+      Spotify.savePlaylist(playlistName, trackUris);
   };
 
     return (
@@ -48,7 +59,7 @@ const [playlistName, setPlaylistName] = useState('');
             </ul>
         </div >
         <div className={styles.buttonGroup}>
-            <button id="addButton" className={styles.addButton}>Add to Spotify</button>
+            <button id="addButton" className={styles.addButton} onClick={savePlaylist}>Add to Spotify</button>
             </div>
         </div>
     )
