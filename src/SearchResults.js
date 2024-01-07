@@ -10,17 +10,25 @@ function SearchResults() {
           artist: "Artist 1",
           genre: "Genre 1"
         },
+        
         {
           id: 2,
           title: "Song Title 2",
           artist: "Artist 2",
           genre: "Genre 2"
         },
+
+        {
+            id: 3,
+            title: "Song Title 3",
+            artist: "Artist 3",
+            genre: "Genre 3"
+          },
        
       ];
 
 return (
-    <div>
+    <div className={styles.searchResults}>
         <h2 className={styles.resultHeading}>Results</h2>
         <ul>
         {sampleResults.map((song) => (

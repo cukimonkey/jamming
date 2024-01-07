@@ -11,9 +11,8 @@
   }
 
 .searchResults {
-    width: 50%; /* Occupies the left half of the screen */
+    width: 40%; /* Occupies the left half of the screen */
     padding: 1rem;
-    margin: 1rem;
     border-radius: 10px; /* Rounded corners */
     background-color: #2a2a2a; /* Dark background for the container */
     color: #f5f5f5; /* Light text color */
@@ -24,7 +23,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 50%; /* Set width to half of the container */
+    
     margin: 0 auto; /* Center the item with auto margins */
     padding: 0.5rem;
     border: 1px solid #3d3d3d; /* Border for each result */
