@@ -25,7 +25,17 @@ const [playlistName, setPlaylistName] = useState('');
       }
     
       const trackUris = songs.map(song => song.uri);
-      Spotify.savePlaylist(playlistName, trackUris);
+      Spotify.savePlaylist(playlistName, trackUris)
+        .then(() => {
+          alert(`Playlist "${playlistName}" added to Spotify`);
+          // Optionally, clear the playlist in the UI after saving
+          setPlaylistName('');
+          // Reset the songs state if you have a method to do so
+        })
+        .catch(error => {
+          console.error('Error saving playlist:', error);
+          alert("There was an error saving your playlist.");
+        });
   };
 
     return (

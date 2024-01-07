@@ -91,12 +91,14 @@ createPlaylist(userId, playlistName) {
 
   //Combine the previous two to save the playlist
   savePlaylist(playlistName, trackUris) {
-    if (!playlistName || !trackUris.length) return;
+    if (!playlistName || !trackUris.length) {
+      return Promise.reject('Playlist name or tracks are missing');
+    }
   
-    let userId;
-    let playlistId;
+    let userId = null;
+    let playlistId = null;
   
-    this.getUserId()
+    return this.getUserId()
       .then(id => {
         userId = id;
         return this.createPlaylist(userId, playlistName);
